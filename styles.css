@@ -102,7 +102,7 @@ header {
 
 .nav-links a:nth-child(6):hover {
   background-color: #333;
-  transform: translateY(-2px);
+  
 }
 
 /* Hamburger menu hidden on desktop */
@@ -114,9 +114,19 @@ header {
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  header {
-    flex-wrap: wrap;
+ header {
+    flex-wrap: nowrap; /* Prevent logo and hamburger from stacking */
     padding: 15px 20px;
+    position: relative;
+  }
+
+  .logo {
+    flex: 1; /* Push hamburger to right */
+  }
+
+  .hamburger {
+    display: block;
+    color: #333;
   }
 
   .nav-links {
@@ -126,15 +136,17 @@ header {
     display: none; /* Hidden by default */
     gap: 15px;
     padding-top: 10px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 999;
   }
 
   .nav-links.active {
     display: flex;
-  }
-
-  .hamburger {
-    display: block;
-    color: #333;
   }
 
   .nav-links a:nth-child(5),
@@ -145,13 +157,7 @@ header {
 }
 
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: #fff;
-  margin: 0;
-  padding: 0;
-  color: #111;
-}
+
 
 .resources {
   padding: 40px 20px;
@@ -1069,11 +1075,19 @@ body {
     flex-direction: column;
     padding: 20px;
     gap: 10px;
+    position: relative;
+    margin-left: -20px;
+    margin-right: 10px ;
   }
-
+.search-icon{
+  margin-right: -20px;
+  position: absolute;
+  left: 28px;
+}
   .search-container input {
     width: 100%;
     padding: 12px;
+    padding-left: 25px;
   }
 
   .search-container button {
@@ -1087,85 +1101,65 @@ body {
     gap: 20px;
   }
 
+  
+}
+
+@media (max-width: 768px) {
+
+  .container {
+    max-width: 100%;
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .section-header h2 {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .section-header p {
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .cards-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .card1, .Card1 {
+    width: 90%;
+  }
+
+  .testimonial-section {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+
   .testimonial-container {
     flex-direction: column;
-    padding: 30px 15px;
+    gap: 20px;
+  }
+
+  .video-container,
+  .video-circle {
+    width: 100%;
+    margin-left: 0;
+    border-radius: 0;
+    height: auto;
+  }
+
+  .video-circle {
+    height: 220px;
+    border-radius: 16px;
   }
 
   .testimonial-text {
+    padding-top: 10px;
     max-width: 100%;
-  }
-
-  .video-container {
-    width: 100%;
-    height: auto;
-    border-radius: 16px;
-    margin-left: 0;
-  }
-
-  .products-section h2,
-  .faq-left h2 {
-    font-size: 22px;
-    padding: 0 15px;
-  }
-
-  .product-cards {
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-  }
-
-  .faq-section {
-    flex-direction: column;
-    padding: 30px 15px;
-  }
-
-  .faq-right {
-    margin-top: 20px;
-  }
-
-  .accordion-header {
-    font-size: 16px;
-    padding: 15px;
-  }
-
-  .accordion-content {
-    padding: 15px;
-  }
-
-  .footer {
-    padding: 30px 15px;
-  }
-
-  .footer-columns {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    gap: 10px;
+    font-size: 15px;
     text-align: center;
-    padding: 10px 15px;
-  }
-
-  .footer-links a {
-    margin-left: 0;
-    margin-top: 8px;
-  }
-
-  .email-form {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .email-form input {
-    width: 100%;
-  }
-
-  .email-form button {
-    width: 100%;
-    margin-top: 10px;
   }
 
   .person-info {
@@ -1173,6 +1167,181 @@ body {
     left: 10px;
     font-size: 12px;
   }
+
+  .products-section h2 {
+    font-size: 24px;
+  }
+
+  .product-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card2 {
+    width: 90%;
+  }
+
+  .faq-section {
+    padding: 40px 20px;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .faq-left h2 {
+    font-size: 24px;
+  }
+
+  .faq-left p,
+  .faq-help p {
+    font-size: 14px;
+  }
+
+  .faq-help a {
+    font-size: 14px;
+  }
+
+  .accordion-header {
+    font-size: 15px;
+  }
+
+  .accordion-body {
+    font-size: 14px;
+  }
+
+  .footer {
+    padding: 40px 20px;
+  }
+
+  .footer-top,
+  .footer-columns {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .footer-logo h2 {
+    text-align: center;
+  }
+
+  .newsletter {
+    text-align: center;
+  }
+
+  .email-form {
+    flex-direction: column;
+    max-width: 100%;
+    border: none;
+    border-bottom: 1px solid #777;
+  }
+
+  .email-form input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .email-form button {
+    align-self: flex-end;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .footer-links {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-links a {
+    margin: 5px 10px;
+  }
 }
+
+@media (max-width: 768px) {
+  .security-section {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+  }
+
+  .container {
+    max-width: 100%;
+    width: 500px;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: -30px;
+  }
+
+  .section-header h2 {
+    font-size: 24px;
+    text-align: center;
+    line-height: 1.3;
+
+  }
+
+  .section-header p {
+    font-size: 14px;
+    text-align: center;
+    max-width: 100%;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .cards-grid {
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  .card1, .Card1 {
+    width: 100%;
+    max-width: 80%;
+    height: auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .card h3 {
+    font-size: 18px;
+    margin-top: -15px;
+  }
+
+  .card p {
+    font-size: 14px;
+    line-height: 1.5;
+     margin-top: -15px;
+  }
+
+  .card-icon {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .arrow {
+    font-size: 18px;
+    margin-top: 20px;
+  }
+
+  .card-small {
+    width: 100%;
+    padding: 15px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-left: -15px;
+  }
+}
+
+
 
 
